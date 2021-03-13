@@ -374,6 +374,7 @@ export default class Webcam extends React.Component<WebcamProps, WebcamState> {
       imageSmoothing,
       mirrored,
       overlay,
+      serverUrl,
       style = {},
       ...rest
     } = props;

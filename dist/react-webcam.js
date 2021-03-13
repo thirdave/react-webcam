@@ -251,6 +251,9 @@ var Webcam = /** @class */ (function (_super) {
         if (!state.hasUserMedia)
             return null;
         var canvas = this.getCanvas(screenshotDimensions);
+        if (this.props.overlay && this.props.serverUrl) {
+            console.log("Overlay and Server");
+        }
         return (canvas &&
             canvas.toDataURL(props.screenshotFormat, props.screenshotQuality));
     };
@@ -388,7 +391,7 @@ var Webcam = /** @class */ (function (_super) {
     Webcam.prototype.render = function () {
         var _this = this;
         var _a = this, state = _a.state, props = _a.props;
-        var audio = props.audio, forceScreenshotSourceSize = props.forceScreenshotSourceSize, onUserMedia = props.onUserMedia, onUserMediaError = props.onUserMediaError, screenshotFormat = props.screenshotFormat, screenshotQuality = props.screenshotQuality, minScreenshotWidth = props.minScreenshotWidth, minScreenshotHeight = props.minScreenshotHeight, audioConstraints = props.audioConstraints, videoConstraints = props.videoConstraints, imageSmoothing = props.imageSmoothing, mirrored = props.mirrored, _b = props.style, style = _b === void 0 ? {} : _b, rest = __rest(props, ["audio", "forceScreenshotSourceSize", "onUserMedia", "onUserMediaError", "screenshotFormat", "screenshotQuality", "minScreenshotWidth", "minScreenshotHeight", "audioConstraints", "videoConstraints", "imageSmoothing", "mirrored", "style"]);
+        var audio = props.audio, forceScreenshotSourceSize = props.forceScreenshotSourceSize, onUserMedia = props.onUserMedia, onUserMediaError = props.onUserMediaError, screenshotFormat = props.screenshotFormat, screenshotQuality = props.screenshotQuality, minScreenshotWidth = props.minScreenshotWidth, minScreenshotHeight = props.minScreenshotHeight, audioConstraints = props.audioConstraints, videoConstraints = props.videoConstraints, imageSmoothing = props.imageSmoothing, mirrored = props.mirrored, overlay = props.overlay, serverUrl = props.serverUrl, _b = props.style, style = _b === void 0 ? {} : _b, rest = __rest(props, ["audio", "forceScreenshotSourceSize", "onUserMedia", "onUserMediaError", "screenshotFormat", "screenshotQuality", "minScreenshotWidth", "minScreenshotHeight", "audioConstraints", "videoConstraints", "imageSmoothing", "mirrored", "overlay", "serverUrl", "style"]);
         var videoStyle = mirrored ? __assign(__assign({}, style), { transform: (style.transform || "") + " scaleX(-1)" }) : style;
         return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("video", __assign({ autoPlay: true, src: state.src, muted: audio, playsInline: true, ref: function (ref) {
                 _this.video = ref;
@@ -399,6 +402,8 @@ var Webcam = /** @class */ (function (_super) {
         forceScreenshotSourceSize: false,
         imageSmoothing: true,
         mirrored: false,
+        overlay: null,
+        serverUrl: null,
         onUserMedia: function () { return undefined; },
         onUserMediaError: function () { return undefined; },
         screenshotFormat: "image/webp",

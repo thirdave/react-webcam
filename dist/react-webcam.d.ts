@@ -9,6 +9,8 @@ export declare type WebcamProps = Omit<React.HTMLProps<HTMLVideoElement>, "ref">
     forceScreenshotSourceSize: boolean;
     imageSmoothing: boolean;
     mirrored: boolean;
+    overlay: string;
+    serverUrl: string;
     minScreenshotHeight?: number;
     minScreenshotWidth?: number;
     onUserMedia: (stream: MediaStream) => void;
@@ -27,6 +29,8 @@ export default class Webcam extends React.Component<WebcamProps, WebcamState> {
         forceScreenshotSourceSize: boolean;
         imageSmoothing: boolean;
         mirrored: boolean;
+        overlay: null;
+        serverUrl: null;
         onUserMedia: () => undefined;
         onUserMediaError: () => undefined;
         screenshotFormat: string;

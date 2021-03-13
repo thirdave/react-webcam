@@ -54,6 +54,8 @@ export type WebcamProps = Omit<React.HTMLProps<HTMLVideoElement>, "ref"> & {
   forceScreenshotSourceSize: boolean;
   imageSmoothing: boolean;
   mirrored: boolean;
+  overlay: string;
+  serverUrl: string;
   minScreenshotHeight?: number;
   minScreenshotWidth?: number;
   onUserMedia: (stream: MediaStream) => void;
@@ -74,6 +76,8 @@ export default class Webcam extends React.Component<WebcamProps, WebcamState> {
     forceScreenshotSourceSize: false,
     imageSmoothing: true,
     mirrored: false,
+    overlay: null,
+    serverUrl: null,
     onUserMedia: () => undefined,
     onUserMediaError: () => undefined,
     screenshotFormat: "image/webp",
@@ -178,6 +182,9 @@ export default class Webcam extends React.Component<WebcamProps, WebcamState> {
     if (!state.hasUserMedia) return null;
 
     const canvas = this.getCanvas(screenshotDimensions);
+    if(this.props.overlay && this.props.serverUrl){
+      console.log("Overlay and Server");
+    }
     return (
       canvas &&
       canvas.toDataURL(props.screenshotFormat, props.screenshotQuality)
@@ -366,6 +373,7 @@ export default class Webcam extends React.Component<WebcamProps, WebcamState> {
       videoConstraints,
       imageSmoothing,
       mirrored,
+      overlay,
       style = {},
       ...rest
     } = props;
